@@ -1,14 +1,14 @@
 <%= form_for @wishlist do |f| %>
-  <p>Title:  <%= f.text_field :name %></p>
+  <p>Title: <%= f.text_field :name %></p>
   <p>
   Add Gifts
-    <%= f.fields_for :gifts do |gift| %>
+    <%= f.fields_for(:gifts) do |gift| %>
 </p>
 <p>
     What: <%= gift.text_field :name %>
 </p>
 <p>
-  From where: <%= gift.text_field :link %>
+    From where: <%= gift.text_field :link %>
 </p>
 <% end %>
   <%= f.submit %>

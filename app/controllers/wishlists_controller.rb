@@ -16,7 +16,7 @@ class WishlistsController < ApplicationController
 
   def new
     @wishlist = Wishlist.new
-    @wishlist.gifts.build
+    @gifts = @wishlist.gifts.build
   end
 
   def edit
@@ -25,8 +25,9 @@ class WishlistsController < ApplicationController
 
   def create
     wishlist = Wishlist.new(wishlist_params)
+    wishlist.user_id = current_user.id
     if wishlist.save
-      redirect_to wishlist
+      redirect_to wishlists_path
     else
       render action: 'new'
     end
@@ -49,7 +50,7 @@ class WishlistsController < ApplicationController
 private
 
   def wishlist_params
-    params.require(:wishlist).permit(:id, :name, gifts_attributes: [:name, :link])
+    params.require(:wishlist).permit(:name, :gifts_attributes => [:name, :link])
   end
 
 end

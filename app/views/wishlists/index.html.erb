@@ -2,5 +2,7 @@
 <br>
 <br>
 <% @wishlists.each do |wl| %>
-<%= wl.name %>
+<p>
+<%= link_to wl.name, wl %>  
+</p>
 <% end %>
