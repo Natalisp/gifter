@@ -1,0 +1,14 @@
+<%= @user.first_name %>'s list of wishes
+<br>
+<br>
+<% number = 0 %>
+<% @wishlist.gifts.each do |g| %>
+ <p>
+<%= number += 1 %>. <%= link_to g.name, gift_path(g)%>
+ </p>
+ <p>
+   Buy it here
+<%= link_to g.link, g.link %>
+ </p>
+
+<% end %>

@@ -1,1 +1,6 @@
-index
+<%= @user.first_name %>'s wishlists:
+<br>
+<br>
+<% @wishlists.each do |wl| %>
+<%= wl.name %>
+<% end %>

@@ -1,2 +1,6 @@
+<% if current_user.wishlists %>
+<%= link_to 'Your Wishlists', user_wishlists_path(current_user.wishlists) %>
+<% end %>
+
 <h1>Welcome#home</h1>
 <p>Find me in app/views/welcome/home.html.erb</p>
