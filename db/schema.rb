@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20161007204218) do
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "gift_id"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,8 +30,9 @@ ActiveRecord::Schema.define(version: 20161007204218) do
   create_table "gifts", force: :cascade do |t|
     t.string   "name"
     t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "wishlist_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|
