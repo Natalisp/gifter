@@ -2,14 +2,9 @@
 <div class="container" >
   <div class="row vertical-align">
    <div class="col-md-6">
-         <% if current_user.wishlists.size >= 1 %>
-         <%= link_to 'Your Wishlists', user_wishlists_path(current_user.wishlists) %>
-         <% else %>
          <h4>Create New Wishlist</h4>
          <br>
-         <%= link_to 'New Wishlist', new_wishlist_path %>
-         <br>
-        <% end %>
+         <%= link_to 'New Wishlist', new_user_wishlist_path(current_user) %>
    </div>
    <div class="col-md-6">
          <h4>Find User</h4>

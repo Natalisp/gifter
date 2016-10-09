@@ -1,11 +1,7 @@
 class WishlistsController < ApplicationController
 
   def index
-    if current_user
       @wishlists = current_user.wishlists
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def show
@@ -26,7 +22,7 @@ class WishlistsController < ApplicationController
     wishlist = Wishlist.new(wishlist_params)
     wishlist.user_id = current_user.id
     if wishlist.save
-      redirect_to wishlist_path(wishlist)
+      redirect_to user_wishlist_path(wishlist)
     else
       render action: 'new'
     end

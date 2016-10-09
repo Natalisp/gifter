@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
 
   resources :users, only: [:show] do
-    resources :wishlists, only: [:index, :show]
+    resources :wishlists
   end
   resources :gifts, only: [:show]
   resources :comments
   resources :friendships
-  resources :wishlists
+  # resources :wishlists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

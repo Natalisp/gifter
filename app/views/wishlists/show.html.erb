@@ -6,7 +6,7 @@
 <% number = 0 %>
 <% @wishlist.gifts.each do |g| %>
  <p>
- <h4><%= number += 1 %>. <%= link_to g.name, gift_path(g)%> <%= link_to edit_wishlist_path %></h4>
+ <h4><%= number += 1 %>. <%= link_to g.name, gift_path(g)%> <%= link_to edit_user_wishlist_path %></h4>
  </p>
  <p>
  <h4>Buy it here</h4>
