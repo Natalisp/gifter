@@ -8,9 +8,9 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new(friendship_params)
-    friendship.save
-    redirect_to root_url
+    @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+    @friendship.save
+    redirect_to user_url(User.find_by(id: params[:friend_id]))
   end
 
   def destroy

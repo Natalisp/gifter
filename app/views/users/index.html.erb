@@ -1,9 +1,11 @@
 <% if @users.blank? %>
-  <h4>There are no recipes containing the term <%= params[:search] %>.</h4>
+  <h4>There are no users with name <%= params[:search] %>.</h4>
+  <%= link_to "Go back", root_path %>
   <% else %>
   <% @users.each do |user| %>
   <p>
   <%= link_to user.first_name, user_path(user) %>
+  <%= link_to 'Add Friend', friendships_path(:friend_id => user.id), :method => :post %>
   </p>
   <% end %>
 <% end %>
