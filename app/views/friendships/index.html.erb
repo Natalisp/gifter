@@ -1,8 +1,8 @@
 <h4>Your Friends</h4>
-<% @friendships.each do |friendship| %>
+<% current_user.friendships.each do |friendship| %>
 <p>
-  <% u = User.find_by(id: friendship.friend_id) %>
-  <%= link_to u.first_name, user_path(u) %>
-  
+  <%= link_to friendship.friend.first_name, user_path(friendship.friend) %>
+  <%= button_to 'Remove from friends', friendship, :method => :delete %>
+
 </p>
 <% end %>

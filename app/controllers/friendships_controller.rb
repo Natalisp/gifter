@@ -1,7 +1,6 @@
 class FriendshipsController < ApplicationController
 
   def index
-    @friendships = current_user.friendships
   end
 
   def show
@@ -11,10 +10,10 @@ class FriendshipsController < ApplicationController
     if current_user.friendships.include?(Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id))
        redirect_to friendships_path
     else
-        @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+        friendship = current_user.friendships.build(friend_id: params[:friend_id])
         friend = User.find_by(id: params[:friend_id])
         friend.friendships.build(friend_id: current_user.id)
-        @friendship.save
+        friendship.save
         current_user.save
         friend.save
         redirect_to friendships_path
@@ -22,10 +21,10 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = current_user.friendships.find(params[:id])
-    @friendship.destroy
-    #   REDIRECT to FRIENDS list!
-    redirect_to root_url
+    friendship = current_user.friendships.find(params[:id])
+    friendship.destroy
+    flash[:notice] = "Removed #{friendship.friend.first_name} from friends"
+    redirect_to friendships_path
   end
 
   private
