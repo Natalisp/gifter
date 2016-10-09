@@ -1,19 +1,24 @@
 class FriendshipsController < ApplicationController
 
   def index
-    @users = Users.all
+    @friendships = current_user.friendships
   end
 
   def show
   end
 
   def create
-    @friendship = current_user.friendships.build(friend_id: params[:friend_id])
-    friend = User.find_by(id: params[:friend_id])
-    friend.friendships.build(friend_id: current_user.id)
-    current_user.save
-    friend.save
-    redirect_to user_path(User.find_by(id: params[:friend_id]))
+    if current_user.friendships.include?(Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id))
+       redirect_to friendships_path
+    else
+        @friendship = current_user.friendships.build(friend_id: params[:friend_id])
+        friend = User.find_by(id: params[:friend_id])
+        friend.friendships.build(friend_id: current_user.id)
+        @friendship.save
+        current_user.save
+        friend.save
+        redirect_to friendships_path
+      end
   end
 
   def destroy
@@ -24,7 +29,9 @@ class FriendshipsController < ApplicationController
   end
 
   private
+
   def friendship_params
     params.require(:friendship)
   end
+
 end
