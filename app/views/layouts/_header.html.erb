@@ -1,8 +1,9 @@
 <nav class="">
     <ul>
         <% if current_user %>
-        <h3>Signed in as <%= current_user.email %></h3>
-        <li> <%= link_to "Sign out", destroy_user_session_path, method: 'delete' %> </li>
+        <%= link_to "Sign out", destroy_user_session_path, method: 'delete' %>
+        <%= link_to "Home", root_path %>
+
         <% else %>
           <li> <%= link_to "sign in", new_user_session_path %> </li>
           <li> <%= link_to "Sign up", new_user_registration_path %> </li>
