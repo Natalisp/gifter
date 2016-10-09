@@ -1,8 +1,8 @@
-<%= @user.first_name %>'s wishlists:
+Your wishlists:
 <br>
 <br>
 <% @wishlists.each do |wl| %>
 <p>
-<%= link_to wl.name, wl %>  
+<%= link_to wl.name, wishlist_path(wl) %>
 </p>
 <% end %>
