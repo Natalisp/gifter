@@ -1,0 +1,6 @@
+<%= @user.first_name %>'s wishlists
+<br>
+
+<% @user.wishlists.each do |wl| %>
+<%= link_to wl.name, wishlist_path(wl) %><br>
+<% end %>
