@@ -3,6 +3,7 @@ Your wishlists:
 <br>
 <% @wishlists.each do |wl| %>
 <p>
-<%= link_to wl.name, wishlist_path(wl) %>
+<%= link_to wl.name, user_wishlist_path(current_user, wl) %>
+<%#= link_to "Edit", edit_user_wishlist_path(current_user, wl) %>
 </p>
 <% end %>

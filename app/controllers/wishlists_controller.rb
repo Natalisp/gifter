@@ -19,31 +19,34 @@ class WishlistsController < ApplicationController
   end
 
   def edit
-    @wishlist = Wishlist.find_by(params[:id])
+    @wishlist = current_user.wishlists.find_by(id: params[:id])
   end
 
   def create
-    wishlist = Wishlist.new(wishlist_params)
-    wishlist.user_id = current_user.id
-    if wishlist.save
-      redirect_to wishlist_path(wishlist)
+    @wishlist = current_user.wishlists.create(wishlist_params)
+    if @wishlist.save
+      redirect_to user_wishlist_path(current_user, @wishlist)
     else
       render action: 'new'
     end
   end
 
   def update
-    wishlist = Wishlist.find(params[:id])
-    if wishlist.update(wishlist_params)
-      redirect_to wishlist
-    else
+    @wishlist = current_user.wishlists.find_by(id: params[:id])
+     if @wishlist.update(wishlist_params)
+       redirect_to user_wishlist_path(current_user, @wishlist)
+     else
       render action: 'edit'
     end
   end
 
   def destoy
-    @wishlist.destroy
-    redirect_to wishlists_url
+    if @wishlist = current_user.wishlists.find_by(id: params[:id])
+       @wishlist.destroy
+       redirect_to wishlists_url
+     else
+       redirect_to user_wishlists_path(current_user)
+     end
   end
 
 private
