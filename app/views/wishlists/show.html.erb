@@ -1,14 +1,16 @@
-<%= @wishlist.name %> list 
+<% if current_user.id == @user.id || @user.friendships.include?(Friendship.find_by(friend_id: current_user.id)) %>
+
+ <h4><%= @wishlist.name %> list</h4>
 <br>
 <br>
 <% number = 0 %>
 <% @wishlist.gifts.each do |g| %>
  <p>
-<%= number += 1 %>. <%= link_to g.name, gift_path(g)%>
+ <h4><%= number += 1 %>. <%= link_to g.name, gift_path(g)%> <%= link_to edit_wishlist_path %></h4>
  </p>
  <p>
-   Buy it here
+ <h4>Buy it here</h4>
 <%= link_to g.link, g.link %>
  </p>
-
+<% end %>
 <% end %>
