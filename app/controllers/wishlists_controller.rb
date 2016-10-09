@@ -9,8 +9,8 @@ class WishlistsController < ApplicationController
   end
 
   def show
-    @wishlist = Wishlist.find_by(id: params[:id])
-    @user = User.find_by(id: @wishlist.user_id)
+    @user = User.find_by(id: params[:user_id])
+    @wishlist = @user.wishlists.find_by(id: params[:id])
   end
 
   def new
