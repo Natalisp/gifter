@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :wishlists
   end
-  resources :gifts, only: [:show]
-  resources :comments
+  resources :gifts, only: [:show] do
+      resources :comments
+  end
+
   resources :friendships
   # resources :wishlists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

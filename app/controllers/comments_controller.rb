@@ -4,9 +4,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    gift = Gift.find_by(id: params[:id])
+    gift = Gift.find_by(id: params[:gift_id])
     @comment = gift.comments.create(comment_params)
     if @comment.save
+      flash[:notice] = "Your comment was successfully posted!"
+      redirect_to gift_path(gift)
+    else
+      flash[:notice] = "Your comment wasn't posted!"
       redirect_to gift_path(gift)
     end
   end
@@ -21,12 +25,17 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+     gift = Gift.find_by(id: params[:gift_id])
+     @comment = gift.comments.find_by(id: params[:id])
+     @comment.destroy
+     flash[:notice] = "Comment was deleted"
+     redirect_to gift_path(gift)
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :gift_id, :content)
+    params.require(:comment).permit(:user_id, :content)
   end
 
 end

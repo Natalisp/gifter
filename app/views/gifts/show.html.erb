@@ -1,15 +1,17 @@
-<h4><%= @gift.name %></h4>
-<h4>Get it at <%= link_to @gift.link %></h4>
+<h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
+
+<h5>Get it at <%= link_to @gift.link %></h5>
 
 <% if @gift.comments.size > 0 %>
-<h5>Comments</h5>
+<br>
+<br>
+<h4>Comments</h4>
 
 <% @comments.each do |comment| %>
   <div>
-    <strong><%= comment.user_name %></strong>
-    <br />
-    <p><%= comment.body %></p>
-    <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
+    <%= comment.content %>
+    <strong>by <%= comment.user.first_name if current_user.id != comment.user.id %> <%= "You" if current_user.id == comment.user.id %></strong>
+    <p><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
   </div>
 <% end %>
 <% end %>

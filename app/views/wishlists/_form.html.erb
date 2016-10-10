@@ -1,4 +1,4 @@
-<%= form_for @wishlist do |f| %>
+<%= form_for [current_user, Wishlist.new] do |f| %>
 
   <p>Title: <%= f.text_field :name %></p>
   <p>

@@ -23,6 +23,7 @@ class WishlistsController < ApplicationController
   end
 
   def create
+    raise params.inspect
     @wishlist = current_user.wishlists.create(wishlist_params)
     if @wishlist.save
       redirect_to user_wishlist_path(current_user, @wishlist)
@@ -41,12 +42,9 @@ class WishlistsController < ApplicationController
   end
 
   def destroy
-    if @wishlist = current_user.wishlists.find_by(id: params[:id])
-       @wishlist.destroy
-       redirect_to wishlists_url
-     else
-       redirect_to user_wishlists_path(current_user)
-     end
+    @wishlist = current_user.wishlists.find_by(id: params[:id])
+    @wishlist.destroy
+    redirect_to user_wishlists_path
   end
 
 private
