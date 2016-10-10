@@ -11,10 +11,9 @@ class FriendshipsController < ApplicationController
        redirect_to friendships_path
     else
         friendship = current_user.friendships.build(friend_id: params[:friend_id])
+        current_user.save
         friend = User.find_by(id: params[:friend_id])
         friend.friendships.build(friend_id: current_user.id)
-        friendship.save
-        current_user.save
         friend.save
         redirect_to friendships_path
       end
