@@ -4,7 +4,7 @@
 <br>
 <br>
 <% number = 0 %>
-<% @gifts.each_with_index do |g, i| %>
+<% @gifts.each.with_index(1) do |g, i| %>
  <p>
  <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
  </p>
