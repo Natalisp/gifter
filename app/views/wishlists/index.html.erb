@@ -5,6 +5,6 @@ Your wishlists:
 <p>
 <%= link_to wl.name, user_wishlist_path(current_user, wl) %>
 <%#= link_to "Edit", edit_user_wishlist_path(current_user, wl) %>
-<p><%= link_to 'Delete', user_wishlist_path(current_user, wl), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+<p><%= button_to 'Delete', user_wishlist_path(current_user, wl), method: :delete, data: { confirm: 'Are you sure?' } %></p>
 </p>
 <% end %>

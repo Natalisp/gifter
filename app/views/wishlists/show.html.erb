@@ -1,18 +1,18 @@
-Your wishlist
+<%= "Your wishlist" if current_user.id == @wishlist.user.id %>
  <h4><%= @wishlist.name %> list</h4>
  <% if current_user.id == @user.id || @user.friendships.include?(Friendship.find_by(friend_id: current_user.id, user_id: @user.id)) %>
 <br>
 <br>
 <% number = 0 %>
-<% @wishlist.gifts.each do |g| %>
+<% @gifts.each_with_index do |g, i| %>
  <p>
- <h4><%= number += 1 %>. <%= link_to g.name, gift_path(g)%> </h4>
-
+ <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
  </p>
  <p>
  <h5>Buy it here <%= link_to g.link, g.link %></h5>
  </p>
 <% end %>
+<%= render partial: 'gifts/form', locals: {wishlist: @wishlist} %>
 <% else %>
   <h4>Only friends can see user's wishlists</h4>
   <%= link_to 'Become Friends', friendships_path(:friend_id => @user.id), :method => :post %>

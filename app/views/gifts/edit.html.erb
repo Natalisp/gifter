@@ -1,0 +1,6 @@
+<%= form_for @gift do |f| %>
+<%= f.text_field :name, placeholder: "What" %><br/>
+<%= f.text_field :link, placeholder: "From where" %><br/>
+<br>
+<%= f.submit "Edit", class: "btn btn-primary" %>
+<% end %>

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :wishlists
   end
-  resources :gifts, only: [:show] do
+
+  # resources :gifts
+  resources :gifts do
       resources :comments
   end
 

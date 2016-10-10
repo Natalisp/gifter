@@ -11,11 +11,14 @@ class WishlistsController < ApplicationController
   def show
     @user = User.find_by(id: params[:user_id])
     @wishlist = @user.wishlists.find_by(id: params[:id])
+    # byebug
+    @gifts = @wishlist.gifts
+    # @gift = @wishlist.gifts.build
   end
 
   def new
     @wishlist = Wishlist.new
-    @wishlist.gifts.build
+    @gift = @wishlist.gifts.build
   end
 
   def edit
@@ -25,7 +28,7 @@ class WishlistsController < ApplicationController
   def create
     @wishlist = current_user.wishlists.create(wishlist_params)
     if @wishlist.save
-      redirect_to user_wishlist_path(@wishlist)
+      redirect_to user_wishlist_path(current_user, @wishlist)
     else
       render action: 'new'
     end
@@ -50,7 +53,7 @@ class WishlistsController < ApplicationController
 private
 
   def wishlist_params
-    params.require(:wishlist).permit(:name, :gift_attributes => [:name, :link])
+    params.require(:wishlist).permit(:name, gifts_attributes: [:name, :link])
   end
 
 end

@@ -1,0 +1,7 @@
+<%= form_for wishlist.gifts.build do |f| %>
+<%= f.text_field :name, placeholder: "What" %><br/>
+<%= f.text_field :link, placeholder: "From where" %><br/>
+<%= f.hidden_field :wishlist_id, value: wishlist.id %>
+<br>
+<%= f.submit "Add Gift", class: "btn btn-primary" %>
+<% end %>

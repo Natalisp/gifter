@@ -1,9 +1,9 @@
-<%= form_for [current_user, Wishlist.new] do |f| %>
+<%= form_for [current_user, @wishlist] do |f| %>
 
   <p>Title: <%= f.text_field :name %></p>
   <p>
   Add Gifts
-    <%= f.fields_for :gift_attributes do |gift| %>
+    <%= f.fields_for :gifts  do |gift| %>
   </p>
   <p>
     What: <%= gift.text_field :name %>

@@ -1,7 +1,6 @@
+<% if current_user.id != @user.id %>
 <h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
-
 <h5>Get it at <%= link_to @gift.link %></h5>
-
 <% if @gift.comments.size > 0 %>
 <br>
 <br>
@@ -16,3 +15,9 @@
 <% end %>
 <% end %>
 <%= render 'comments/form' %>
+<% else %>
+<h4><%= @gift.name %></h4>
+<h5>Get it at <%= link_to @gift.link %></h5>
+<%= link_to "Edit", edit_gift_path(@gift) %>
+<%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
+<%end%>
