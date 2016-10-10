@@ -3,7 +3,7 @@
   <p>Title: <%= f.text_field :name %></p>
   <p>
   Add Gifts
-    <%= f.fields_for @gifts do |gift| %>
+    <%= f.fields_for :gift_attributes do |gift| %>
   </p>
   <p>
     What: <%= gift.text_field :name %>

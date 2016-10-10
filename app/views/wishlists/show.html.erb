@@ -1,3 +1,4 @@
+Your wishlist
  <h4><%= @wishlist.name %> list</h4>
  <% if current_user.id == @user.id || @user.friendships.include?(Friendship.find_by(friend_id: current_user.id, user_id: @user.id)) %>
 <br>
@@ -6,11 +7,10 @@
 <% @wishlist.gifts.each do |g| %>
  <p>
  <h4><%= number += 1 %>. <%= link_to g.name, gift_path(g)%> </h4>
- <!-- Comments -->
+
  </p>
  <p>
- <h4>Buy it here</h4>
-<%= link_to g.link, g.link %>
+ <h5>Buy it here <%= link_to g.link, g.link %></h5>
  </p>
 <% end %>
 <% else %>

@@ -1,5 +1,11 @@
 class Wishlist < ApplicationRecord
   has_many :gifts
   belongs_to :user
-  accepts_nested_attributes_for :gifts, reject_if: proc { |attributes| attributes['name'].blank? }
+
+  def gift_attributes=(gift)
+    gift = Gift.find_or_create_by(name: gift[:name], link: gift[:link])
+    gifts << gift
+  end
+
+
 end
