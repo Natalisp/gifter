@@ -40,7 +40,7 @@ class WishlistsController < ApplicationController
     end
   end
 
-  def destoy
+  def destroy
     if @wishlist = current_user.wishlists.find_by(id: params[:id])
        @wishlist.destroy
        redirect_to wishlists_url
