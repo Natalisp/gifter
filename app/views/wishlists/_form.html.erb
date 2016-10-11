@@ -1,16 +1,17 @@
 <%= form_for [current_user, @wishlist] do |f| %>
 
-  <p>Title: <%= f.text_field :name %></p>
+  <p> <h5>Wishlist Title:</h5>
+    <%= f.text_field :name %></p>
   <p>
-  Add Gifts
+  <h5>Add First Gift</h5>
     <%= f.fields_for :gifts  do |gift| %>
   </p>
   <p>
-    What: <%= gift.text_field :name %>
+   <%= gift.text_field :name, placeholder: "What" %>
   </p>
   <p>
-    From where: <%= gift.text_field :link %>
-</p>
+   <%= gift.text_field :link, placeholder: "From where" %>
+  </p>
 <% end %>
-  <%= f.submit %>
+<%= f.submit "Add Wishlist", class: "btn btn-primary" %>
 <% end %>
