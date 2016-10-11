@@ -10,7 +10,7 @@ class WishlistsController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:user_id])
-    @wishlist = @user.wishlists.find_by(id: params[:id])
+    @wishlist = Wishlist.find_by(id: params[:id])
     # byebug
     @gifts = @wishlist.gifts
     # @gift = @wishlist.gifts.build

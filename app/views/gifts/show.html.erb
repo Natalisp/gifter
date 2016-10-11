@@ -1,7 +1,10 @@
 <% if current_user.id != @user.id %>
 <h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
 <h5>Get it at <%= link_to @gift.link %></h5>
+<br>
+<%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" %>
 <% if @gift.comments.size > 0 %>
+<%= button_to "I am getting it!", gift_path(@gift, :status => "receiving"), method: :patch, class: "btn btn-primary"  if @gift.status == "wishing" %>
 <br>
 <br>
 <h4>Comments</h4>
@@ -11,7 +14,6 @@
     <%= comment.content %>
     <strong>by <%= comment.user.first_name if current_user.id != comment.user.id %> <%= "You" if current_user.id == comment.user.id %></strong>
     <p><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
-  </div>
 <% end %>
 <% end %>
 <%= render 'comments/form' %>

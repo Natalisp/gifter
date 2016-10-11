@@ -1,7 +1,7 @@
 class GiftsController < ApplicationController
   def show
     @gift = Gift.find_by(id: params[:id])
-    @user = @gift.wishlist.user
+    @user = User.find_by(params[:user_id])
     @comments = @gift.comments.all
     @comment = @gift.comments.build
   end
@@ -34,7 +34,12 @@ class GiftsController < ApplicationController
   def update
     @gift = Gift.find(params[:id])
     @gift.update(gift_params)
-    redirect_to user_wishlist_path(current_user, @gift.wishlist)
+    if current_user == @gift.wishlist.user
+      redirect_to user_wishlist_path(current_user, @gift.wishlist)
+   else
+      @user = User.find_by(id: params[:user_id])
+      redirect_to user_wishlist_path(@user, @gift.wishlist)
+  end
   end
 
   def destroy
@@ -46,7 +51,7 @@ class GiftsController < ApplicationController
 
   private
   def gift_params
-    params.require(:gift).permit(:name, :link, :wishlist_id)
+    params.require(:gift).permit(:name, :link, :wishlist_id, :status)
   end
 
 end

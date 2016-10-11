@@ -1,4 +1,5 @@
 class Wishlist < ApplicationRecord
+  has_many :wishlist_gifts
   has_many :gifts
   belongs_to :user
 

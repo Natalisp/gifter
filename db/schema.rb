@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010230915) do
+ActiveRecord::Schema.define(version: 20161010231447) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20161010230915) do
   create_table "wishlist_gifts", force: :cascade do |t|
     t.integer  "wishlist_id"
     t.integer  "gift_id"
-    t.string   "gift_status"
     t.integer  "friend_buyer_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
