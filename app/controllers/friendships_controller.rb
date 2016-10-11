@@ -1,11 +1,5 @@
 class FriendshipsController < ApplicationController
 
-  def index
-  end
-
-  def show
-  end
-
   def create
     if current_user.friendships.include?(Friendship.find_by(friend_id: params[:friend_id], user_id: current_user.id))
        redirect_to friendships_path

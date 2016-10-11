@@ -23,6 +23,10 @@ Wishlist.create(name: 'Thankgiving', user_id: 4)
   )
 end
 
+User.create(first_name: 'Natalie', last_name: 'Pat', email: 'n@gmail.com', password: 'nnnnnn')
+User.create(first_name: 'Katya', last_name: 'Pet', email: 'k@gmail.com', password: 'kkkkkk')
+
+
 25.times do
   Gift.create(
       name: Faker::Commerce.product_name,

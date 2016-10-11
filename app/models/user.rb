@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   has_many :friendships
-  has_many :friends, through: :friendships, :source => 'User'
+  has_many :friends, through: :friendships, source: :friend
   has_many :wishlists
   has_many :gifts, through: :wishlists
-  has_many :wishlist_gifts
-  has_many :purchases, through: :wishlist_gifts, foreign_key: "friend_buyer_id", class_name: "Gift"
   has_many :comments
+  has_many :wishlist_gifts, foreign_key: "friend_buyer_id"
+  has_many :purchases, through: :wishlist_gifts, source: :gift
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
