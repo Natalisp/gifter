@@ -12,7 +12,7 @@
  <h5>Buy it here <%= link_to g.link, g.link %></h5>
  </p>
 <% end %>
-<%= render partial: 'gifts/form', locals: {wishlist: @wishlist} %>
+<%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>
 <% else %>
   <h4>Only friends can see user's wishlists</h4>
   <%= link_to 'Become Friends', friendships_path(:friend_id => @user.id), :method => :post %>
