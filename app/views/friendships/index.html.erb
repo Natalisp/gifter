@@ -5,7 +5,7 @@
          <% current_user.friendships.each do |friendship| %>
            <p>
            <%= link_to friendship.friend.first_name, user_path(friendship.friend) %>
-           <%= button_to 'Remove from friends', friendship, :method => :delete %>
+           <%= button_to 'Remove from friends', friendship, :method => :delete, class: "btn btn-primary"  %>
            </p>
          <% end %>
    </div>
@@ -14,7 +14,7 @@
          <br>
          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
              <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
-             <%= submit_tag "Search", :name => nil %>
+             <%= submit_tag "Search", :name => nil, class: "btn btn-primary"  %>
          <% end %>
    </div>
   </div>
