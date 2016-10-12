@@ -6,4 +6,10 @@ class Gift < ApplicationRecord
   validates_presence_of :name
   scope :receiving, -> {where(status: "receiving")}
   scope :waiting, -> { where(status: "wishing")   }
+
+
+  def friend_buyer(wishlist_gifts_attr)
+    self.wishlist_gifts.build(wishlist_gifts_attr)
+  end
+
 end

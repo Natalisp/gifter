@@ -5,7 +5,7 @@ class GiftsController < ApplicationController
     @comments = @gift.comments.all
     @comment = Comment.new
     # @comment = @gift.comments.build
-    
+
   end
 
   def create
@@ -31,13 +31,15 @@ class GiftsController < ApplicationController
 
   def update
     @gift = Gift.find(params[:id])
-    @gift.update(gift_params)
-    if current_user == @gift.wishlist.user
-      redirect_to user_wishlist_path(current_user, @gift.wishlist)
-   else
-      @user = User.find_by(id: params[:user_id])
-      redirect_to user_wishlist_path(@user, @gift.wishlist)
-  end
+    wishlist = @gift.wishlist
+     if params[:gift][:status] == "receiving"
+        @gift.friend_buyer(wishlist_id: wishlist.id, gift_id: @gift.id, friend_buyer_id: current_user.id)
+        @gift.update(gift_params)
+        redirect_to gift_path(@gift)
+     else
+       @gift.update(gift_params)
+       redirect_to gift_path(@gift)
+   end
   end
 
   def destroy

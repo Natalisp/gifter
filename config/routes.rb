@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   end
 
   resources :friendships
+
+  resources :wishlist_gifts, :only => [:create, :destroy]
+
   # resources :wishlists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

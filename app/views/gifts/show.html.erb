@@ -2,9 +2,12 @@
 <h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
 <h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
 <br>
-<%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" %>
+<%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %>
+<%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %>
+<%= button_to "I am getting it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
+<br>
+<br>
 <% if @gift.comments.size > 0 %>
-<%= button_to "I am getting it!", gift_path(@gift, :status => "receiving"), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
 <br>
 <br>
 <h4>Comments</h4>

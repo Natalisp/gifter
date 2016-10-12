@@ -16,6 +16,7 @@ class WishlistsController < ApplicationController
   end
 
   def new
+    @user = current_user
     @wishlist = Wishlist.new
     @gift = @wishlist.gifts.build
   end
