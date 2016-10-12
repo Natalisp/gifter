@@ -1,4 +1,12 @@
-PROFILE PAGE
+<% if current_user != @user %>
+    <p>
+    <%= link_to "See #{@user.first_name} Wishlists", user_wishlists_path(@user) %>
+    </p>
+<% else %>
+
+    PROFILE PAGE
+    <%= link_to "Edit your Profile", edit_user_registration_path(current_user) %>
+<% end %>
 
 
 <!-- <br>
