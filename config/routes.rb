@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     resources :wishlists
   end
 
-  # resources :gifts
   resources :gifts do
       resources :comments
   end
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :wishlist_gifts, :only => [:create, :destroy]
 
+  # Catch-all route, redirects to root
+  match '*path', to: redirect('/'), via: :all
   # resources :wishlists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
