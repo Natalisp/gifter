@@ -1,1 +1,47 @@
+.body {
+  font-family: 'Lato', sans-serif;
+}
 
+/* primary button */
+.btn-primary {
+     background-color: #FFF;
+     color: #285e8e;
+     border-color: #3276b1;
+     border-radius: 25px;
+ }
+ .btn-primary:hover,
+ .btn-primary:focus,
+ .btn-primary:active {
+     background-color: #3276b1;
+     color: #FFF;
+     border-color: #285e8e;
+ }
+
+.home-page_center {
+    padding: 10% 5%;
+ }
+
+.navbar-brand {
+  font-family: Permanent Marker, serif;
+  font-size: 230%;
+  text-align: center;
+}
+
+.navbar-default .navbar-brand {
+  color: #f1cf63;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #47b8e0;
+}
+
+/* BUTTONS */
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: #47b8e0;
+  border-color: #47b8e0
+}
+
+/* FONTS */
+.navbar-default .navbar-nav li  a {
+   font-size: 130%;
+}
