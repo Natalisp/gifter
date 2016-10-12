@@ -2,9 +2,10 @@
   <div class="row vertical-align">
    <div class="col-md-6">
          <h4>Your Friends</h4>
+         <br>
          <% current_user.friendships.each do |friendship| %>
            <p>
-           <%= link_to friendship.friend.first_name, user_path(friendship.friend) %>
+          <h4> <%= link_to friendship.friend.first_name, user_path(friendship.friend) %></h4>
            <%= button_to 'Remove from friends', friendship, :method => :delete, class: "btn btn-primary"  %>
            </p>
          <% end %>

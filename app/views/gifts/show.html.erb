@@ -1,7 +1,18 @@
 <% if current_user.id != @user.id %>
-<h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
-<h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
+
+<% if @gift.status == "receiving" %>
+<p class="button-center padding-bottom-10">
+  <span class="btn icon border blue hover-disable hover-text-blue round">
+    <i class="fa fa-check"></i>
+  </span>
+</p>
+<% end %>
+
+<h4> <%=  @gift.wishlist.user.first_name %> realy wants <strong><%= @gift.name %></h4> </strong>
+<h5>Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
 <br>
+
+<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 <%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %>
 <%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %>
 <%= button_to "I am getting it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
@@ -10,7 +21,9 @@
 <% if @gift.comments.size > 0 %>
 <br>
 <br>
-<h4>Comments</h4>
+<div style="color:#ff7473">
+<h4>Comments:</h4>
+</div>
 
 <% @comments.each do |comment| %>
   <div>

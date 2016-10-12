@@ -1,5 +1,5 @@
-.body {
-  font-family: 'Lato', sans-serif;
+*{
+  margin:0;
 }
 
 /* primary button */
@@ -44,4 +44,17 @@
 /* FONTS */
 .navbar-default .navbar-nav li  a {
    font-size: 130%;
+}
+
+.user-name a {
+  color: #282c37;
+  font-size: 150%;
+}
+
+.glyphicon-ok:before {
+  color: #47b8e0;
+}
+
+.wishlist-item a {
+  color: #282c37
 }

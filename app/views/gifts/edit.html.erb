@@ -1,4 +1,4 @@
-<%= form_for @gift do |f| %>
+<%= form_for [@wishlist, @gift] do |f| %>
 <%= f.text_field :name, placeholder: "What" %><br/>
 <%= f.text_field :link, placeholder: "From where" %><br/>
 <br>

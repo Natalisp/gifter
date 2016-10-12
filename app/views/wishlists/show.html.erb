@@ -7,13 +7,9 @@
 <% @gifts.each.with_index(1) do |g, i| %>
  <p>
  <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
- </p>
- <p>
  <h5>Store preference: <%= link_to g.link, g.link if g.link %></h5>
- <p><%= button_to 'Delete', gift_path(g), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></p>
-<!-- EDIT BUTTON -->
- </p>
 <% end %>
+
 <br>
 <br>
 <h5>ADD MORE WISHES</h5>
