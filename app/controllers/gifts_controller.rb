@@ -1,14 +1,12 @@
 class GiftsController < ApplicationController
   def show
     @gift = Gift.find_by(id: params[:id])
-    @user = User.find_by(params[:user_id])
+    @user = @gift.wishlist.user
     @comments = @gift.comments.all
-    @comment = @gift.comments.build
+    @comment = Comment.new
+    # @comment = @gift.comments.build
+    
   end
-
-  # def new
-  #   @gift = Gift.new
-  # end
 
   def create
     @wishlist = Wishlist.find_by(id: params[:gift][:wishlist_id])

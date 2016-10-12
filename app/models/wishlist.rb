@@ -2,6 +2,8 @@ class Wishlist < ApplicationRecord
   has_many :wishlist_gifts
   has_many :gifts
   belongs_to :user
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
   # accepts_nested_attributes_for :gifts
 

@@ -1,4 +1,14 @@
 <%= form_for [current_user, @wishlist] do |f| %>
+<% if @wishlist.errors.any? %>
+    <h6><%= pluralize(@wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h6>
+    <ul>
+      <% @wishlist.errors.full_messages.each do |msg| %>
+      <div style="color:#ff0000">
+        <li><%= msg %></li>
+        </div>
+      <% end %>
+    </ul>
+  <% end %>
 
   <p> <h5>Wishlist Title:</h5>
     <%= f.text_field :name %></p>

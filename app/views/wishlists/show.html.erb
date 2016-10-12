@@ -9,7 +9,9 @@
  <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
  </p>
  <p>
- <h5>Buy it here <%= link_to g.link, g.link %></h5>
+ <h5>Store preference: <%= link_to g.link, g.link if g.link %></h5>
+ <p><%= button_to 'Delete', gift_path(g), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></p>
+<!-- EDIT BUTTON -->
  </p>
 <% end %>
 <%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>
