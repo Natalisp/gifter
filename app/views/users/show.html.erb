@@ -1,9 +1,12 @@
 <br>
 <% if current_user.id == @user.id || current_user.friendships.include?(Friendship.find_by(friend_id: @user.id, user_id: current_user.id)) %>
 <h4><%= @user.first_name %> wishlists</h4>
-    <% @user.wishlists.each do |wl| %>
-    <%= link_to wl.name, user_wishlist_path(@user, wl) %><br>
-  <% end %>
+
+<%= "User doesn't have any wishlists yet" if @user.wishlists.size == 0 %>
+
+  <% @user.wishlists.each do |wl| %>
+  <%= link_to wl.name, user_wishlist_path(@user, wl) %><br>
+   <% end %>
   <% else %>
   <% if @user.first_name %>
   <h4>You are not friends with <%= @user.first_name %> yet...</h4>

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :comments
   has_many :wishlist_gifts, foreign_key: "friend_buyer_id"
   has_many :purchases, through: :wishlist_gifts, source: :gift
+  scope :buying, -> { joins(:wishlist_gifts).group("friend_buyer_id") & Gift.receiving }
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

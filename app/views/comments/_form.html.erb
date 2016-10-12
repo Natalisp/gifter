@@ -1,14 +1,4 @@
 <%= form_for [@gift, Comment.new] do |f| %>
-<!-- <% c = Comment.new %>
-<% if c.errors.any? %>
-    <h2><%= pluralize(c.errors.count, "error") %> prohibited this comment from being saved:</h2>
-    <ul>
-      <% c.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %> -->
-
 <%= f.text_field :content, placeholder: "Say something" %><br/>
 <%= f.hidden_field :user_id, value: current_user.id %>
 <br>

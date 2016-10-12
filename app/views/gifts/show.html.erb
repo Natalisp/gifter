@@ -1,6 +1,6 @@
 <% if current_user.id != @user.id %>
 <h4> <%=  @gift.wishlist.user.first_name %> realy wants <%= @gift.name %></h4>
-<h5><%= "Get it at "<%= link_to @gift.link %> if @gift.link %></h5> 
+<h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
 <br>
 <%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" %>
 <% if @gift.comments.size > 0 %>
@@ -19,7 +19,7 @@
 <%= render 'comments/form' %>
 <% else %>
 <h4><%= @gift.name %></h4>
-<h5>Get it at <%= link_to @gift.link %></h5>
+<h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
 <%= link_to "Edit", edit_gift_path(@gift) %>
 <%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
 <%end%>

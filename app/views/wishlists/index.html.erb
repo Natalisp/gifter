@@ -1,10 +1,10 @@
 <h4>Your wishlists: </h4>
 <br>
 <br>
-<% @wishlists.each do |wl| %>
+<% @wishlists.each.with_index(1) do |wl, i| %>
 <p>
-<%= link_to wl.name, user_wishlist_path(current_user, wl) %>
-<%#= link_to "Edit", edit_user_wishlist_path(current_user, wl) %>
-<p><%= button_to 'Delete', user_wishlist_path(current_user, wl), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></p>
+<%= i %>. <%= link_to wl.name, user_wishlist_path(current_user, wl) %>
+    <%= button_to "Edit", edit_user_wishlist_path(current_user, wl), class: "btn btn-primary" %>
+    <%= button_to 'Delete', user_wishlist_path(current_user, wl), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 </p>
 <% end %>

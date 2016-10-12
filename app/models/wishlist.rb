@@ -4,8 +4,7 @@ class Wishlist < ApplicationRecord
   belongs_to :user
   validates_presence_of :name
   validates_uniqueness_of :name
-
-  # accepts_nested_attributes_for :gifts
+  scope :expectations, -> { joins(:wishlist_gifts).group("wishlist_id") & Gift.waiting }
 
   def gifts_attributes=(attributes)
     attributes.each { |i, gift_attr| self.gifts.build(gift_attr)}
