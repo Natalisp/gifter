@@ -1,12 +1,8 @@
 class WishlistsController < ApplicationController
 
   def index
-    if current_user
       @user = User.find_by(id: params[:user_id])
       @wishlists = @user.wishlists
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def show
