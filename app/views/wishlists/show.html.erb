@@ -14,6 +14,9 @@
 <!-- EDIT BUTTON -->
  </p>
 <% end %>
+<br>
+<br>
+<h5>ADD MORE WISHES</h5>
 <%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>
 <% else %>
   <h4>Only friends can see user's wishlists</h4>

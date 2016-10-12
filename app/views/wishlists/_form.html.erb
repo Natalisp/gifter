@@ -1,4 +1,4 @@
-<%= form_for [current_user, @wishlist] do |f| %>
+<%= form_for [@user, @wishlist] do |f| %>
 <% if @wishlist.errors.any? %>
     <h6><%= pluralize(@wishlist.errors.count, "error") %> prohibited this wishlist from being saved:</h6>
     <ul>

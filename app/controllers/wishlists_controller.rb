@@ -2,7 +2,8 @@ class WishlistsController < ApplicationController
 
   def index
     if current_user
-      @wishlists = current_user.wishlists
+      @user = User.find_by(id: params[:user_id])
+      @wishlists = @user.wishlists
     else
       redirect_to new_user_session_path
     end
@@ -11,9 +12,7 @@ class WishlistsController < ApplicationController
   def show
     @user = User.find_by(id: params[:user_id])
     @wishlist = Wishlist.find_by(id: params[:id])
-    # byebug
     @gifts = @wishlist.gifts
-    # @gift = @wishlist.gifts.build
   end
 
   def new
@@ -22,7 +21,8 @@ class WishlistsController < ApplicationController
   end
 
   def edit
-    @wishlist = current_user.wishlists.find_by(id: params[:id])
+    @wishlist = Wishlist.find_by(id: params[:id])
+    @user = current_user
   end
 
   def create
@@ -36,11 +36,11 @@ class WishlistsController < ApplicationController
 
 
   def update
-    @wishlist = current_user.wishlists.find_by(id: params[:id])
+    @wishlist = Wishlist.find_by(id: params[:id])
      if @wishlist.update(wishlist_params)
        redirect_to user_wishlist_path(current_user, @wishlist)
      else
-      render action: 'edit'
+       redirect_to user_wishlist_path(current_user, @wishlist)
     end
   end
 
