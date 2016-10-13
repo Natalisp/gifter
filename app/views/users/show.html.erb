@@ -10,7 +10,7 @@
          <h4>Your Username: <%= current_user.first_name if current_user.first_name %></h4>
          <h4>Your Last Name: <%= current_user.last_name if current_user.last_name  %></h4>
          <br>
-         <%= button_to "Edit Your Account Info", edit_user_registration_path(current_user), class: "btn btn-primary" %>
+         <%= button_to "Edit Your Account Info", edit_user_registration_path, method: :get, class: "btn btn-primary btn-lg" %>
      <% end %>
    </div>
    <div class="col-md-6">

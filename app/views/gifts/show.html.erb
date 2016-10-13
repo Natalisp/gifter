@@ -1,42 +1,65 @@
-<%= link_to "Go Back", user_wishlist_path(@gift.wishlist.user, @gift.wishlist) %>
-<% if current_user.id != @user.id %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <%= link_to "Go Back", user_wishlist_path(@gift.wishlist.user, @gift.wishlist) %>
+    </div>
+    <div class="col-sm-6">
 
-    <% if @gift.status == "receiving" %>
-    <p class="button-center padding-bottom-10">
-      <span class="btn icon border blue hover-disable hover-text-blue round">
-        <i class="fa fa-check"></i>
-      </span>
-    </p>
-    <% end %>
+      <% if current_user.id != @user.id %>
 
-      <h3> <%=  @gift.wishlist.user.first_name %> realy wants <strong><%= @gift.name %></h3> </strong>
-      <h5>Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
-      <br>
-      <span class="icon">
-      <i class="pull-left glyphicon glyphicon-ok"></i>
-      <h4><%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %></h4>
-      </span>
-      <h4><%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %></h4>
-      <%= button_to "I am getting it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
-      <br>
-      <br>
-    <% if @gift.comments.size > 0 %>
-      <br>
-      <br>
-      <div style="color:#ff7473">
-      <h4>Comments:</h4>
-      </div>
-    <% @comments.each do |comment| %>
-      <div>
-        <%= comment.content %>
-        <strong>by <%= comment.user.first_name if current_user.id != comment.user.id %> <%= "You" if current_user.id == comment.user.id %></strong>
-        <p><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
+          <!-- <% if @gift.status == "receiving" %>
+          <p class="button-center padding-bottom-10">
+            <span class="btn icon border blue hover-disable hover-text-blue round">
+              <i class="fa fa-check"></i>
+            </span>
+          </p>
+          <% end %> -->
+
+        <h2 class="center-text"> <%=  @gift.wishlist.user.first_name %> realy wants </h2>
+        <h1 class="center-text"><strong><%= @gift.name.upcase %> </strong></h1>
+        <h5>Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
+        <br>
+        <span class="icon">
+        <i class="pull-left glyphicon glyphicon-ok"></i>
+        <h4><%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %></h4>
+        </span>
+        <h4><%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %></h4>
+        <%= button_to "I am getting it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
+        <br>
+        <br>
+      <% if @gift.comments.size > 0 %>
+        <br>
+        <br>
+        <div style="color:#47b8e0">
+        <h3 class="center-text">COMMENTS:</h3>
+        </div>
+        <br>
+      <% @comments.each do |comment| %>
+        <div>
+          <div style="color:#5e5e5f">
+          <h4 class="center-text"><%= comment.content %> </h4>
+        </div>
+          <div class="center-right">
+            <h5 >by <%= comment.user.first_name if current_user.id != comment.user.id %> <%= "You" if current_user.id == comment.user.id %></h5>
+               <p><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= render 'comments/form' %>
-<% else %>
-    <h3><%= @gift.name %></h3>
-    <h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
-    <%= link_to "Edit", edit_gift_path(@gift) %>
-    <%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
-<%end%>
+      <div class="center-text">
+      <%= render 'comments/form' %>
+    </div>
+  <% else %>
+      <h3><%= @gift.name %></h3>
+      <h5>Store preference: <%= link_to @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
+      <%= link_to "Edit", edit_gift_path(@gift) %>
+      <%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
+  <%end%>
+
+
+
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+  </div>
+</div>

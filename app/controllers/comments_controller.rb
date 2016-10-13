@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
      gift = Gift.find_by(id: params[:gift_id])
      @comment = gift.comments.find_by(id: params[:id])
      @comment.destroy
-    #  flash[:notice] = "Comment was deleted"
+     flash[:alert] = "Your comment was deleted!"
      redirect_to gift_path(gift)
   end
 
