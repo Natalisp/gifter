@@ -15,8 +15,14 @@
                 <h4> <%= link_to wl.name, user_wishlist_path(@user, wl) %><br></h4>
                 </div>
                 <%= link_to "Edit", edit_user_wishlist_path(@user, wl),  method: :get if current_user.id == wl.user.id %>
+                <%= link_to "Delete", edit_user_wishlist_path(@user, wl), :method => 'DELETE' %>
+
                 <br>
               <% end %>
+              <br>
+              <br>
+              <%= button_to 'Create New Wishlist', new_user_wishlist_path(current_user), method: :get, class: "btn btn-primary btn-lg" if current_user.id == @user.id %>
+
             <% else %>
               <h4>You are not friends with the user yet...</h4>
               <h4>Only friends can see user's wishlists</h4>
@@ -24,7 +30,6 @@
           <% end %>
       </div>
       <div class="col-sm-3">
-
       </div>
     </div>
   </div>

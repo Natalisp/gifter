@@ -1,11 +1,14 @@
 class GiftsController < ApplicationController
-  
+
   def show
     @gift = Gift.find_by(id: params[:id])
-    @user = @gift.wishlist.user
-    @comments = @gift.comments.all
-    @comment = Comment.new
-    # @comment = @gift.comments.build
+    if @gift
+      @user = @gift.wishlist.user
+      @comments = @gift.comments.all
+      @comment = Comment.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -56,7 +59,7 @@ class GiftsController < ApplicationController
 
   private
   def gift_params
-    params.require(:gift).permit(:name, :link, :wishlist_id, :status)
+    params.require(:gift).permit(:id, :name, :link, :wishlist_id, :status)
   end
 
 end

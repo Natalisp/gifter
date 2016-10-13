@@ -27,6 +27,7 @@ class WishlistsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @wishlist = current_user.wishlists.create(wishlist_params)
     if @wishlist.save
       redirect_to user_wishlist_path(current_user, @wishlist)
@@ -54,7 +55,7 @@ class WishlistsController < ApplicationController
 private
 
   def wishlist_params
-    params.require(:wishlist).permit(:name, gifts_attributes: [:name, :link])
+    params.require(:wishlist).permit(:id, :name, gifts_attributes: [:name, :wishlist_id, :link])
   end
 
 end

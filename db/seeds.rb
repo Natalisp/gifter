@@ -7,13 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
-Wishlist.create(name: 'Bday', user_id: 1)
-Wishlist.create(name: 'New Year', user_id: 2)
-Wishlist.create(name: '8 of March', user_id: 3)
-Wishlist.create(name: 'Thankgiving', user_id: 4)
-
-
 5.times do
   User.create(
       first_name: Faker::Name.first_name,
@@ -26,6 +19,10 @@ end
 User.create(first_name: 'Natalie', last_name: 'Pat', email: 'n@gmail.com', password: 'nnnnnn')
 User.create(first_name: 'Katya', last_name: 'Pet', email: 'k@gmail.com', password: 'kkkkkk')
 
+Wishlist.create(name: 'Bday', user_id: 1)
+Wishlist.create(name: 'New Year', user_id: 2)
+Wishlist.create(name: '8 of March', user_id: 3)
+Wishlist.create(name: 'Thankgiving', user_id: 4)
 
 25.times do
   Gift.create(
@@ -35,6 +32,6 @@ User.create(first_name: 'Katya', last_name: 'Pet', email: 'k@gmail.com', passwor
   )
 end
 
-  Comment.create(user_id: 3, gift_id: 4, content: Faker::Hipster.sentence)
-  Comment.create(user_id: 4, gift_id: 2, content: Faker::Hipster.sentence)
-  Comment.create(user_id: 2, gift_id: 10, content: Faker::Hipster.sentence)
+Comment.create(user_id: 3, gift_id: 4, content: Faker::Hipster.sentence)
+Comment.create(user_id: 4, gift_id: 2, content: Faker::Hipster.sentence)
+Comment.create(user_id: 2, gift_id: 10, content: Faker::Hipster.sentence)
