@@ -9,13 +9,13 @@
     </p>
     <% end %>
 
-      <h4> <%=  @gift.wishlist.user.first_name %> realy wants <strong><%= @gift.name %></h4> </strong>
+      <h3> <%=  @gift.wishlist.user.first_name %> realy wants <strong><%= @gift.name %></h3> </strong>
       <h5>Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
       <br>
 
       <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-      <%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %>
-      <%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %>
+      <h4><%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %></h4>
+      <h4><%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %></h4>
       <%= button_to "I am getting it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
       <br>
       <br>

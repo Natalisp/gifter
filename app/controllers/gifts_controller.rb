@@ -1,11 +1,11 @@
 class GiftsController < ApplicationController
+  
   def show
     @gift = Gift.find_by(id: params[:id])
     @user = @gift.wishlist.user
     @comments = @gift.comments.all
     @comment = Comment.new
     # @comment = @gift.comments.build
-
   end
 
   def create
@@ -13,14 +13,14 @@ class GiftsController < ApplicationController
     if !@wishlist.gifts.include?(Gift.find_by(name: params[:gift][:name]))
        @gift = @wishlist.gifts.create(gift_params)
        if @gift.save
-         flash[:notice] = "Your gift was successfully added!"
+         flash[:alert] = "Your gift was successfully added!"
          redirect_to user_wishlist_path(current_user, @wishlist)
        else
-         flash[:notice] = "Couldn't add the gift, try again!"
+         flash[:alert] = "Couldn't add the gift, try again!"
          redirect_to user_wishlist_path(current_user, @wishlist)
        end
     else
-       flash[:notice] = "Already in the list"
+       flash[:alert] = "Already in the list!"
        redirect_to user_wishlist_path(current_user, @wishlist)
     end
   end

@@ -7,10 +7,10 @@ class CommentsController < ApplicationController
     gift = Gift.find_by(id: params[:gift_id])
     @comment = gift.comments.build(comment_params)
     if @comment.save
-      flash[:notice] = "Your comment was successfully posted!"
+      flash[:alert] = "Your comment was successfully posted!"
       redirect_to gift_path(gift)
     else
-      flash[:notice] = "Your comment wasn't posted!"
+      flash[:alert] = "Your comment wasn't posted!"
       redirect_to gift_path(gift)
     end
   end
