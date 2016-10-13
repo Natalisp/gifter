@@ -27,6 +27,11 @@ class GiftsController < ApplicationController
 
   def edit
     @gift = Gift.find(params[:id])
+    if @gift.wishlist.user != current_user
+      redirect_to root_path
+    elsif
+      @gift = Gift.find(params[:id])
+    end
   end
 
   def update
@@ -38,7 +43,7 @@ class GiftsController < ApplicationController
         redirect_to gift_path(@gift)
      else
        @gift.update(gift_params)
-       redirect_to gift_path(@gift)
+       redirect_to user_wishlist_path(current_user, @gift.wishlist)
    end
   end
 

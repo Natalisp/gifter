@@ -5,15 +5,20 @@
 <br>
 <% number = 0 %>
 <% @gifts.each.with_index(1) do |g, i| %>
- <p>
- <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
+<div class="gift-name">
+  <div class="<%= 'gift-receiving-name' if g.status == 'receiving' %>">
+    <h4><%= i %>. <%= link_to g.name, gift_path(g.id)%> </h4>
+  </div>
+</div>
  <h5>Store preference: <%= link_to g.link, g.link if g.link %></h5>
 <% end %>
 
 <br>
 <br>
-<h5>ADD MORE WISHES</h5>
-<%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>
+  <% if current_user.id == @wishlist.user.id %>
+    <h5>ADD MORE WISHES</h5>
+    <%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>
+  <% end %>
 <% else %>
   <h4>Only friends can see user's wishlists</h4>
   <%= link_to 'Become Friends', friendships_path(:friend_id => @user.id), :method => :post %>

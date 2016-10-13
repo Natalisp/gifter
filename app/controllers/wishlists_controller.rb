@@ -18,8 +18,12 @@ class WishlistsController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
+    if current_user == @user
     @wishlist = Wishlist.find_by(id: params[:id])
-    @user = current_user
+  else
+    redirect_to root_path
+  end
   end
 
   def create

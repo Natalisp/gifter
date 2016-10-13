@@ -3,6 +3,7 @@
    <div class="col-md-6">
          <h4>Your Friends</h4>
          <br>
+       <%= "You do not have any friends yet, start searching." if current_user.friends.size == 0 %>   
          <% current_user.friendships.each do |friendship| %>
            <p>
           <h4> <%= link_to friendship.friend.first_name, user_path(friendship.friend) %></h4>

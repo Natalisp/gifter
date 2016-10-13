@@ -15,15 +15,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def index
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
      gift = Gift.find_by(id: params[:gift_id])
      @comment = gift.comments.find_by(id: params[:id])

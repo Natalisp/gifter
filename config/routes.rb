@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   end
 
   resources :gifts do
-      resources :comments
+      resources :comments, only: [:create, :destroy]
   end
 
-  resources :friendships
+  resources :friendships, only: [:index, :create, :destroy]
 
   resources :wishlist_gifts, :only => [:create, :destroy]
 
