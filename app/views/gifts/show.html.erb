@@ -26,13 +26,13 @@
         <h4 class="center-text"><%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %></h4>
         <%= button_to "I will get it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
       </div>
-        <%= button_to "Lets split", user_path(current_user), class: "btn btn-primary" %>
+        <%= button_to "Lets split", user_path(current_user), class: "btn btn-primary" if !current_user %>
         <br>
         <br>
       <% if @gift.comments.size > 0 %>
         <br>
         <br>
-        <div style="color:#47b8e0">
+        <div style="color:#eb1478">
         <h3 class="center-text">COMMENTS:</h3>
         </div>
         <br>

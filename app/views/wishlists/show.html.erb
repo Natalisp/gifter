@@ -23,7 +23,7 @@
       <br>
       <br>
         <% if current_user.id == @wishlist.user.id %>
-          <div style="color:#47b8e0">
+          <div style="color:#eb1478">
           <h4>ADD MORE WISHES</h4>
           </div>
           <%= render partial: 'gifts/form', locals: {wishlist: @wishlist}  if current_user.id == @user.id%>

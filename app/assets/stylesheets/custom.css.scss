@@ -2,24 +2,37 @@
   margin:0;
 }
 
+// pink color #eb1478
+
+a:link, a:visited, a:hover, a:active {
+    color: #a8a8a8;
+  }
+
 /* primary button */
 .btn-primary {
-     background-color: #FFF;
-     color: #285e8e;
-     border-color: #3276b1;
-     border-radius: 25px;
+     background-color: #eb1478;
+     color: #fff;
+     border-color: #eb1478;
  }
  .btn-primary:hover,
  .btn-primary:focus,
  .btn-primary:active {
-     background-color: #3276b1;
+     background-color: #eb1478;
      color: #FFF;
-     border-color: #285e8e;
+     border-color: #eb1478;
  }
 
 .home-page_center {
     padding: 10% 5%;
  }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:  Benton Sans Medium, Helvetica, sans-serif
+}
+
+p, div {
+   font-family:  Benton Sans Medium, Helvetica, sans-serif
+}
 
 .navbar-brand {
   font-family: Permanent Marker, serif;
@@ -32,18 +45,23 @@
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-  color: #47b8e0;
+  color: #eb1478;
 }
 
 /* BUTTONS */
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-  background-color: #47b8e0;
-  border-color: #47b8e0
+  background-color: #eb1478;
+  border-color: #eb1478
 }
 
 /* FONTS */
+.navbar-default .navbar-nav li  a:hover {
+   font-size: 150%;
+   color: #eb1478;
+}
+
 .navbar-default .navbar-nav li  a {
-   font-size: 130%;
+
 }
 
 .user-name a {
@@ -61,7 +79,7 @@
 }
 
 .glyphicon-ok:before {
-  color: #47b8e0;
+  color: #eb1478;
 }
 
 .wishlist-item a {
@@ -73,7 +91,7 @@
 }
 
 .alert {
-  color: #47b8e0;
+  color: #eb1478;
 }
 
 .icon {
@@ -91,4 +109,8 @@
 
 .center-right {
   text-align: right;
+}
+
+.container-fluid {
+  background-color: #ffffff
 }
