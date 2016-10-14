@@ -1,24 +1,3 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Gifted allows users to create wishlists for all kinds of occasions (or without any) and stay social via connecting with other users. Friends can see each other’s wishlists and user’ friends can have a discussion under each of user’s gifts, maybe comment on user’s very expensive/bad taste or ask someone to split(split button/option is coming up). At the same time user aka creator of the wishlist aka gift receiver cannot see any of the comments, but once one of his very kind friends decides to get a gift for him(clicks “I will get it” button) a color of the gift name changes a few levels lighter in user’s wishlist so it gives him a hint that someone is getting it for him so he can get excited.
