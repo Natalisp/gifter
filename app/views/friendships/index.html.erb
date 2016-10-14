@@ -6,8 +6,8 @@
        <%= "You do not have any friends yet, start searching." if current_user.friends.size == 0 %>
          <% current_user.friendships.each do |friendship| %>
            <p>
-          <h3> <%= link_to friendship.friend.first_name, user_path(friendship.friend) %></h3>
-          <%= link_to "Wishlists", user_wishlists_path(friendship.friend) %>
+          <h3 class="gift-name"> <%= link_to friendship.friend.first_name, user_path(friendship.friend) %> profile</h3>
+          <h3><%= link_to "#{friendship.friend.first_name} Wishlists", user_wishlists_path(friendship.friend) %></h3>
            <%= button_to 'Remove from friends', friendship, :method => :delete, class: "btn btn-primary btn-lg"  %>
            </p>
          <% end %>

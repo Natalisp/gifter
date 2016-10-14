@@ -5,7 +5,7 @@
   <% @users.each do |user| %>
   <p>
     <div class="user-name">
-        <%= link_to user.first_name, user_path(user) %>
+        <%= link_to user.first_name, user_wishlists_path(user) %>
     </div>
   <%= link_to 'Add Friend', friendships_path(:friend_id => user.id), :method => :post if current_user != user && !current_user.friendships.include?(Friendship.find_by(friend_id: user.id, user_id: current_user.id)) %>
   </p>

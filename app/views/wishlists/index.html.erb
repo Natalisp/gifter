@@ -15,7 +15,7 @@
                 <h4> <%= link_to wl.name, user_wishlist_path(@user, wl) %><br></h4>
                 </div>
                 <%= link_to "Edit", edit_user_wishlist_path(@user, wl),  method: :get if current_user.id == wl.user.id %>
-                <%= link_to "Delete", edit_user_wishlist_path(@user, wl), :method => 'DELETE' %>
+                <%= link_to "Delete", edit_user_wishlist_path(@user, wl), :method => 'DELETE' if current_user.id == wl.user.id %>
 
                 <br>
               <% end %>
