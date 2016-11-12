@@ -3,12 +3,23 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  def index
+    gift = Gift.find(params[:gift_id])
+    @comments = gift.comments
+    render json: @comments, each_serializer: CommentSerializer 
+  end
+
+  def show
+    comment = Comment.find(params[:id])
+    render json: comment
+  end
+
   def create
     gift = Gift.find_by(id: params[:gift_id])
-    @comment = gift.comments.build(comment_params)
+    @comment = gift.comments.build(content: params[:content], user_id: current_user.id)
+    # byebug
     if @comment.save
-      flash[:alert] = "Your comment was successfully posted!"
-      redirect_to gift_path(gift)
+      render json: @comment
     else
       flash[:alert] = "Your comment wasn't posted!"
       redirect_to gift_path(gift)

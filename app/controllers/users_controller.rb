@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     if current_user
       @purchases = current_user.purchases
     end
+    respond_to do |f|
+      f.html { render :show }
+      f.json { render json: @user }
+    end
   end
 
 

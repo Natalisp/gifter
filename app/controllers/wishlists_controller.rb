@@ -20,10 +20,10 @@ class WishlistsController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
     if current_user == @user
-    @wishlist = Wishlist.find_by(id: params[:id])
-  else
+      @wishlist = Wishlist.find_by(id: params[:id])
+    else
     redirect_to root_path
-  end
+    end
   end
 
   def create
@@ -55,7 +55,7 @@ class WishlistsController < ApplicationController
 private
 
   def wishlist_params
-    params.require(:wishlist).permit(:id, :name, gifts_attributes: [:name, :wishlist_id, :link])
+    params.require(:wishlist).permit(:id, :name, gifts_attributes: [:id, :name, :wishlist_id, :link])
   end
 
 end

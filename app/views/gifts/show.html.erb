@@ -36,16 +36,18 @@
         <h3 class="center-text">COMMENTS:</h3>
         </div>
         <br>
-      <% @comments.each do |comment| %>
+        <ul style="list-style-type:none" class="center-text">
+        </ul>
+      <!-- <% @comments.each do |comment| %>
         <div>
           <div style="color:#5e5e5f">
           <h4 class="center-text"><%= comment.content %> </h4>
         </div>
           <div class="center-right">
             <h5 >by <%= comment.user.first_name if current_user.id != comment.user.id %> <%= "You" if current_user.id == comment.user.id %></h5>
-               <p><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
+               <p id="comment-delete"><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
           </div>
-        <% end %>
+        <% end %> -->
       <% end %>
       <div class="center-text">
       <%= render 'comments/form' %>
@@ -65,8 +67,6 @@
   <%end%>
 
     </div>
-    <div class="col-sm-3">
 
-    </div>
   </div>
 </div>

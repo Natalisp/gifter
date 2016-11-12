@@ -15,6 +15,7 @@
   <p>
   <h5>Add First Gift</h5>
     <%= f.fields_for :gifts  do |gift| %>
+    <%= gift.hidden_field :id %>
   </p>
   <p>
    <%= gift.text_field :name, placeholder: "What" %>
@@ -23,5 +24,5 @@
    <%= gift.text_field :link, placeholder: "From where" %>
   </p>
 <% end %>
-<%= f.submit "Create Wishlist", class: "btn btn-primary" %>
+<%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
