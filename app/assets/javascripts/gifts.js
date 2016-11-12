@@ -1,12 +1,13 @@
-$(document).on('turbolinks:load', function() {
+var deleting = '<div class="center-right"><button type="button" class="btn btn-link">Delete</button></div>';
+
+$(function() {
   $.ajax({
     type: 'GET',
     url: window.location.href + "/" + "comments",
     success: function(resp){
       $.each(resp, function( i, comment ) {
-        var c = '<li>' + comment.content + '</li><br>';
-        var author = '<div class="center-right">' + " by " + comment['user'].first_name + </div>; 
-      $("ul").append(c);
+        var c = '<li>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong></li><br>';
+      $("ul").append(c + deleting);
     });
     }
   });
@@ -27,11 +28,14 @@ function makeAjaxPost(event) {
           // //  debugger;
           comment = new Comment(response.content);
           comment.renderHTML();
+          $("input[type=submit]").removeAttr("disabled");
          },
          error: function () {
            alert('ups, try again!');
          }
-      });
+      }).done(function () {
+         $(this).find('#comment_content').val('');
+      }) ;
     }
 
 
@@ -40,11 +44,10 @@ function makeAjaxPost(event) {
         this.content = content;
       }
       renderHTML() {
-        var html = '<li>' + this.content +'</li><br>';
-        $('ul').append(html);
-      // $("#games").append('<li data-gameid="' + game.id + '">' + "Game Number " + game.id + '</li>');
-    }
-  }
+        var html = '<li>' + this.content + '<strong>' + " by You" + '</strong>' + '</li><br>';
+        $('ul').append(html + deleting);
+     }
+   }
 
 // $(document).on('turbolinks:load', function() {
 //
