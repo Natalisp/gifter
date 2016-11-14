@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def index
     gift = Gift.find(params[:gift_id])
     @comments = gift.comments
-    render json: @comments, each_serializer: CommentSerializer 
+    render json: @comments, each_serializer: CommentSerializer
   end
 
   def show
@@ -30,8 +30,10 @@ class CommentsController < ApplicationController
      gift = Gift.find_by(id: params[:gift_id])
      @comment = gift.comments.find_by(id: params[:id])
      @comment.destroy
-     flash[:alert] = "Your comment was deleted!"
-     redirect_to gift_path(gift)
+     respond_to do |format|
+      format.html { redirect_to gift_path(gift), flash[:alert] = "Your comment was deleted!" }
+      format.json { head :no_content }
+    end
   end
 
   private

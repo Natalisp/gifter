@@ -1,18 +1,36 @@
-var deleting = '<div class="center-right"><button type="button" class="btn btn-link">Delete</button></div>';
+ var deleting = '<div class="center-right"><button type="button" id="delete" comment-id="" class="btn btn-link">Delete</button></div></li><br>';
 
-$(function() {
+
+$(document).on('turbolinks:load', function() {
+  loadComments();
+});
+
+function loadComments() {
   $.ajax({
     type: 'GET',
     url: window.location.href + "/" + "comments",
     success: function(resp){
       $.each(resp, function( i, comment ) {
-        var c = '<li>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong></li><br>';
+        var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>';
+        // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
       $("ul").append(c + deleting);
+      $("button[type=button]").attr("comment-id", comment.id);
     });
     }
+  }).done(function () {
+    deleteComment();
   });
   $("#new_comment").on('submit', makeAjaxPost);
-});
+}
+
+function deleteComment() {
+  $(document).ready(function(){
+    $(this).find("button[type=button]").on('click', function(){
+      debugger
+    });
+  });
+}
+
 
 function makeAjaxPost(event) {
    event.preventDefault();
@@ -28,6 +46,7 @@ function makeAjaxPost(event) {
           // //  debugger;
           comment = new Comment(response.content);
           comment.renderHTML();
+          $('#comment_content').val('');
           $("input[type=submit]").removeAttr("disabled");
          },
          error: function () {
@@ -48,49 +67,3 @@ function makeAjaxPost(event) {
         $('ul').append(html + deleting);
      }
    }
-
-// $(document).on('turbolinks:load', function() {
-//
-//   $("#new_comment").on("submit", function(e) {
-//     e.preventDefault();
-//     var comment_content = $('#comment_content').val();
-//     var giftId = window.location.href.slice(-2);
-//     $.ajax({
-//     type: 'POST',
-//     url: this.action,
-//     data: {content: comment_content},
-//     success: function(resp) {
-//       debugger;
-//         console.log(resp)
-//       // $("#comment_content").html(resp);
-//      }
-//     });
-//    });
-
- //   $("#comment-delete").on("click", function(e){
- //      $.ajax({
- //        url: this.href,
- //        type: 'delete',
- //        success: function(result) {
- //    // Do something with the result
- //    }
- //   });
- //  //  e.preventDefault();
- // });
-
-
-  // });
-
-// class Gift {
-//   constructor(attriibutes) {
-//     this.name = attributes.name
-//   }
-//
-//   renderHTML() {
-//     return (
-//       "<h3>" + this.name + "</h3>"
-//     )
-// //   }
-//
-//
-// }
