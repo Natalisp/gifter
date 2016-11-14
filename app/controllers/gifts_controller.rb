@@ -6,6 +6,10 @@ class GiftsController < ApplicationController
       @user = @gift.wishlist.user
       @comments = @gift.comments.all
       @comment = Comment.new
+      respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @gift}
+    end
     else
       redirect_to root_path
     end

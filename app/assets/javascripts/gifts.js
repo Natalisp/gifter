@@ -1,8 +1,8 @@
- var deleting = '<div class="center-right"><button type="button" id="delete" comment-id="" class="btn btn-link">Delete</button></div></li><br>';
-
+ // var deleting = '<div class="center-right"><button type="button" id="delete" comment-id="" class="btn btn-link">Delete</button></div></li><br>';
 
 $(document).on('turbolinks:load', function() {
   loadComments();
+  deleteComment();
 });
 
 function loadComments() {
@@ -13,7 +13,7 @@ function loadComments() {
       $.each(resp, function( i, comment ) {
         var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>';
         // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
-      $("ul").append(c + deleting);
+      $("#list-comments").append(c + '<button id="delete">didnt mean that</button>');
       $("button[type=button]").attr("comment-id", comment.id);
     });
     }
@@ -24,10 +24,9 @@ function loadComments() {
 }
 
 function deleteComment() {
-  $(document).ready(function(){
-    $(this).find("button[type=button]").on('click', function(){
-      debugger
-    });
+  $('#delete').click(function (event) {
+    event.preventDefault();
+    $(this).parent().remove();
   });
 }
 
@@ -54,6 +53,7 @@ function makeAjaxPost(event) {
          }
       }).done(function () {
          $(this).find('#comment_content').val('');
+         loadComments();
       }) ;
     }
 
@@ -67,3 +67,9 @@ function makeAjaxPost(event) {
         $('ul').append(html + deleting);
      }
    }
+
+  function nextGift() {
+    $('#next').on('click', function () {
+      alert('hola')
+    })
+  }

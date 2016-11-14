@@ -29,11 +29,10 @@
         <%= button_to "Lets split", user_path(current_user), class: "btn btn-primary" if !current_user %>
         <br>
         <br>
-      <% if @gift.comments.size > 0 %>
         <br>
         <br>
         <div style="color:#eb1478">
-        <h3 class="center-text">COMMENTS:</h3>
+        <h3 id="show-comments" class="center-text">COMMENTS, CONCERNS, SUGGESTIONS.</h3>
         </div>
         <br>
         <ul style="list-style-type:none" class="center-text" id="list-comments">
@@ -48,11 +47,10 @@
                <p id="comment-delete"><%= link_to 'Delete', gift_comment_path(@gift, comment), method: :delete, data: { confirm: 'Are you sure?' } if current_user.id == comment.user_id %></p>
           </div>
         <% end %> -->
-      <% end %>
       <div class="center-text">
       <%= render 'comments/form' %>
     </div>
-  <% else %>
+    <% else %>
       <h1 class="center-text">You want</h1>
       <div class="center-text gift-name-color">
               <h1><%= @gift.name %></h1>
@@ -63,10 +61,10 @@
         <%= link_to "Edit", edit_gift_path(@gift) %>
         <%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
       </div>
-
-  <%end%>
-
+    <%end%>
     </div>
-
+    <div class="col-sm-3">
+    <a href="#" id="next" data-id="">Next Gift</a>
+    </div>
   </div>
 </div>

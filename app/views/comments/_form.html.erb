@@ -1,5 +1,5 @@
 <%= form_for [@gift, Comment.new] do |f| %>
-<%= f.text_field :content, placeholder: "Say something" %><br/>
+<%= f.text_field :content, placeholder: "What do you think" %><br/>
 <%= f.hidden_field :user_id, value: current_user.id %>
 <br>
 <%= f.submit "Add Comment", class: "btn btn-primary" %>
