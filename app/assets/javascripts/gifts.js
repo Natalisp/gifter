@@ -1,8 +1,7 @@
- // var deleting = '<div class="center-right"><button type="button" id="delete" comment-id="" class="btn btn-link">Delete</button></div></li><br>';
+var deleteButton = '<button class="btn btn-secondary btn-sm" id="delete-button">DELETE</button>';
 
 $(document).on('turbolinks:load', function() {
   loadComments();
-  deleteComment();
   nextGift();
 });
 
@@ -12,9 +11,9 @@ function loadComments() {
     url: window.location.href + "/" + "comments",
     success: function(resp){
       $.each(resp, function( i, comment ) {
-        var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>';
+        var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>' + deleteButton + '</li>';
         // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
-      $("#list-comments").append(c + '<button id="delete">didnt mean that</button>');
+      $("#list-comments").append(c);
       $("button[type=button]").attr("comment-id", comment.id);
     });
     }
@@ -25,12 +24,11 @@ function loadComments() {
 }
 
 function deleteComment() {
-  $('#delete').click(function (event) {
-    event.preventDefault();
+  $('#list-comments').on('click', '#delete-button', function () {
+    // debugger
     $(this).parent().remove();
   });
 }
-
 
 function makeAjaxPost(event) {
    event.preventDefault();
@@ -54,7 +52,6 @@ function makeAjaxPost(event) {
          }
       }).done(function () {
          $(this).find('#comment_content').val('');
-         loadComments();
       }) ;
     }
 
@@ -64,8 +61,8 @@ function makeAjaxPost(event) {
         this.content = content;
       }
       renderHTML() {
-        var html = '<li>' + this.content + '<strong>' + " by You" + '</strong>' + '</li><br>';
-        $('ul').append(html + deleting);
+        var html = '<li>' + this.content + '<strong>' + " by You" + '</strong>' + deleteButton + '</li>';
+        $("#list-comments").append(html);
      }
    }
 
@@ -79,13 +76,26 @@ function makeAjaxPost(event) {
         success: function(response) {
           var g = response['gifts'].randomElement();
           $('#gift-name').text(g.name);
-          // $.each(gift['comments'], function(i, comment){
-          //   var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>';
-          // $("#list-comments").append(c + '<button id="delete">didnt mean that</button>');
-            // })
-        //  $("#next").attr("data-id", gift["id"]);
+          $("#next").attr("gift-id", g.id);
         }
+      }).done(updateComments);
+    });
+  }
+
+  function updateComments() {
+    $("#list-comments").text("");
+    var giftId = parseInt($("#next").attr("gift-id"));
+    $.ajax({
+      type: 'GET',
+      url: "/gifts/" + giftId + "/comments.json",
+      success: function(resp){
+        $.each(resp, function( i, comment ) {
+          debugger
+          var c = '<li>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>' + deleteButton +'<li>';
+          // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
+        $("#list-comments").append(c);
       });
+      }
     });
   }
 

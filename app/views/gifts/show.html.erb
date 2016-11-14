@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
-      <%= link_to "Go Back", user_wishlist_path(@gift.wishlist.user, @gift.wishlist) %>
+      <%= link_to "GO BACK", user_wishlist_path(@gift.wishlist.user, @gift.wishlist) %>
     </div>
     <div class="col-sm-6">
 
@@ -64,7 +64,7 @@
     <%end%>
     </div>
     <div class="col-sm-3">
-    <button id="next" class="btn btn-link" wishlist-id="<%= @wishlist.id %>" user-id="<%= @user.id %>" >NEXT</button>
+    <button id="next" class="btn btn-link" wishlist-id="<%= @wishlist.id %>" user-id="<%= @user.id %>" gift-id="" >NEXT</button>
     </div>
   </div>
 </div>
