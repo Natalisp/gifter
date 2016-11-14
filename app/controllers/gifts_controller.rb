@@ -4,11 +4,12 @@ class GiftsController < ApplicationController
     @gift = Gift.find_by(id: params[:id])
     if @gift
       @user = @gift.wishlist.user
+      @wishlist = @gift.wishlist
       @comments = @gift.comments.all
       @comment = Comment.new
       respond_to do |format|
       format.html { render :show }
-      format.json { render json: @gift}
+      format.json { render json: @gift, include:  ['comments', 'comment.user': @user] }
     end
     else
       redirect_to root_path

@@ -17,7 +17,7 @@
 
         <h2 class="center-text"> <%=  @gift.wishlist.user.first_name %> realy wants </h2>
         <div class="center-text gift-name-color">
-        <h1><strong><%= @gift.name.upcase %> </strong></h1>
+        <h1 id="gift-name"><strong><%= @gift.name.upcase %> </strong></h1>
         </div>
         <div class="center-text">
         <h5 >Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
@@ -53,7 +53,7 @@
     <% else %>
       <h1 class="center-text">You want</h1>
       <div class="center-text gift-name-color">
-              <h1><%= @gift.name %></h1>
+              <h1 id="gift-name"><%= @gift.name %></h1>
       </div>
       <div class="center-text">
         <h3>From: <%= link_to @gift.link if @gift.link %> <%= "no preference" if @gift.link == "" %></h3>
@@ -64,7 +64,7 @@
     <%end%>
     </div>
     <div class="col-sm-3">
-    <a href="#" id="next" data-id="">Next Gift</a>
+    <button id="next" class="btn btn-link" wishlist-id="<%= @wishlist.id %>" user-id="<%= @user.id %>" >NEXT</button>
     </div>
   </div>
 </div>

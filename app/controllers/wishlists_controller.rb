@@ -9,6 +9,10 @@ class WishlistsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @wishlist = Wishlist.find_by(id: params[:id])
     @gifts = @wishlist.gifts
+    respond_to do |format|
+     format.html { render :show }
+     format.json { render json: @wishlist}
+   end
   end
 
   def new

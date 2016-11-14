@@ -3,6 +3,7 @@
 $(document).on('turbolinks:load', function() {
   loadComments();
   deleteComment();
+  nextGift();
 });
 
 function loadComments() {
@@ -69,7 +70,25 @@ function makeAjaxPost(event) {
    }
 
   function nextGift() {
+    var wishlistId =  parseInt($("#next").attr("wishlist-id"));
+    var userId = parseInt($("#next").attr("user-id"));
     $('#next').on('click', function () {
-      alert('hola')
-    })
+      $.ajax({
+        type: 'GET',
+        url: "/users/" + userId + "/wishlists/" + wishlistId +".json",
+        success: function(response) {
+          var g = response['gifts'].randomElement();
+          $('#gift-name').text(g.name);
+          // $.each(gift['comments'], function(i, comment){
+          //   var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>';
+          // $("#list-comments").append(c + '<button id="delete">didnt mean that</button>');
+            // })
+        //  $("#next").attr("data-id", gift["id"]);
+        }
+      });
+    });
+  }
+
+  Array.prototype.randomElement = function () {
+      return this[Math.floor(Math.random() * this.length)]
   }

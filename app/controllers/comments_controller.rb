@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def index
     gift = Gift.find(params[:gift_id])
     @comments = gift.comments
-    render json: @comments, each_serializer: CommentSerializer
+    render json: @comments
   end
 
   def show
