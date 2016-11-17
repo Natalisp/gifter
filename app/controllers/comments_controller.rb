@@ -27,12 +27,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-     gift = Gift.find_by(id: params[:gift_id])
-     @comment = gift.comments.find_by(id: params[:id])
+     @gift = Gift.find_by(id: params[:gift_id])
+     @comment = @gift.comments.find_by(id: params[:id])
      @comment.destroy
      respond_to do |format|
-      format.html { redirect_to gift_path(gift), flash[:alert] = "Your comment was deleted!" }
-      format.json { head :no_content }
+      format.html { redirect_to gift_path(@gift) }
+      format.json { render json: @gift }
     end
   end
 

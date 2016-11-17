@@ -14,7 +14,6 @@ function loadComments() {
         var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>' + deleteButton + '</li>';
         // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
       $("#list-comments").append(c);
-      $("button[type=button]").attr("comment-id", comment.id);
     });
     }
   }).done(function () {
@@ -24,9 +23,22 @@ function loadComments() {
 }
 
 function deleteComment() {
-  $('#list-comments').on('click', '#delete-button', function () {
-    // debugger
-    $(this).parent().remove();
+  $('#list-comments').on('click', '#delete-button', function (event) {
+    event.preventDefault();
+    // $(this).parent().remove();
+    $.ajax({
+      method: 'DELETE',
+      url: window.location.href + "/comments/" + $(this).parent().attr("id"),
+      dataType: 'json',
+      success: function (response) {
+        $('#list-comments').empty();
+        $.each(response.comments, function( i, comment ) {
+          var c = '<li id=' + comment.id +'>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>' + deleteButton + '</li>';
+          // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
+        $("#list-comments").append(c);
+      });
+      }
+    });
   });
 }
 
@@ -42,7 +54,7 @@ function makeAjaxPost(event) {
          success: function(response) {
           //  console.log(response);
           // //  debugger;
-          comment = new Comment(response.content);
+          comment = new Comment(response);
           comment.renderHTML();
           $('#comment_content').val('');
           $("input[type=submit]").removeAttr("disabled");
@@ -57,11 +69,12 @@ function makeAjaxPost(event) {
 
 
     class Comment {
-      constructor(content) {
-        this.content = content;
+      constructor(attr) {
+        this.id = attr.id;
+        this.content = attr.content;
       }
       renderHTML() {
-        var html = '<li>' + this.content + '<strong>' + " by You" + '</strong>' + deleteButton + '</li>';
+        var html = '<li id=' + this.id + '>' + this.content + '<strong>' + " by You" + '</strong>' + deleteButton + '</li>';
         $("#list-comments").append(html);
      }
    }
@@ -90,7 +103,6 @@ function makeAjaxPost(event) {
       url: "/gifts/" + giftId + "/comments.json",
       success: function(resp){
         $.each(resp, function( i, comment ) {
-          debugger
           var c = '<li>' + comment.content + '<strong>' + " by " + comment['user'].first_name + '</strong>' + deleteButton +'<li>';
           // var del = '<a data-method="delete" href="/' +  window.location.href + "/" + "comments/" + comment.id + '">Delete</a>';
         $("#list-comments").append(c);
