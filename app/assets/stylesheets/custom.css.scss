@@ -1,18 +1,39 @@
+$biruza: #7DE0E6;
+$pink: #eb1478;
+
+
 *{
   margin:0;
+}
+
+body {
+  background-color: $biruza;
 }
 
 // pink color #eb1478
 
 a:link, a:visited, a:hover, a:active {
-    color: #a8a8a8;
+    color: #000;
   }
+
+
+/* sign in form */
+
+#reg_form {
+  width: 40vw;
+  height: 350px;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  text-align: center;
+}
+
 
 /* primary button */
 .btn-primary {
-     background-color: #eb1478;
+     background-color: $pink;
      color: #fff;
-     border-color: #eb1478;
+     border-color: $pink;
  }
  .btn-primary:hover,
  .btn-primary:focus,
@@ -24,7 +45,21 @@ a:link, a:visited, a:hover, a:active {
 
 .home-page_center {
     padding: 10% 5%;
+    text-align: center;
+    width: 100%;
  }
+
+ .wishlists_center {
+   padding: 0;
+   text-align: center;
+   width: 100%;
+ }
+
+ #left-home, #right-home {
+   display: inline-block;
+   padding: 50px;
+ }
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family:  Benton Sans Medium, Helvetica, sans-serif
@@ -32,6 +67,10 @@ h1, h2, h3, h4, h5, h6 {
 
 p, div {
    font-family:  Benton Sans Medium, Helvetica, sans-serif
+}
+
+.navbar {
+  border: none;
 }
 
 .navbar-brand {
@@ -59,13 +98,20 @@ p, div {
 }
 
 /* FONTS */
-.navbar-default .navbar-nav li  a:hover {
-   font-size: 150%;
-   color: #eb1478;
+.navbar-default .navbar-nav li a {
+  color: #fff;
+  opacity: 0.8;
+  letter-spacing: 2px;
+  transition: transform .15s ease-out .15s,-webkit-transform .15s ease-out .15s;
 }
 
-.navbar-default .navbar-nav li  a {
+/* table */
 
+td {
+  padding-right: 10px;
+  height: 20px;
+  width: 100px;
+  vertical-align: bottom;
 }
 
 .user-name a {
@@ -116,7 +162,7 @@ p, div {
 }
 
 .container-fluid {
-  background-color: #ffffff;
+  background-color: $biruza;
 }
 
 #delete-button {

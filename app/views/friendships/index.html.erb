@@ -1,24 +1,28 @@
-<div class="container" >
+<div class="container">
   <div class="row vertical-align">
-   <div class="col-md-6">
-         <h2>Your Friends</h2>
+         <h3>YOUR FRIENDS</h3>
          <br>
        <%= "You do not have any friends yet, start searching." if current_user.friends.size == 0 %>
          <% current_user.friendships.each do |friendship| %>
            <p>
-          <h3 class="gift-name"> <%= link_to friendship.friend.first_name, user_path(friendship.friend) %> profile</h3>
-          <h3><%= link_to "#{friendship.friend.first_name} Wishlists", user_wishlists_path(friendship.friend) %></h3>
-           <%= button_to 'Remove from friends', friendship, :method => :delete, class: "btn btn-primary btn-sm"  %>
+             <table>
+               <tr>
+                 <td><h4><%= link_to "#{friendship.friend.first_name}", user_wishlists_path(friendship.friend) %></h4></td>
+                 <td><h5><%= link_to 'Unfriend', user_wishlists_path(friendship.friend), :method => :delete %></h5></td>
+               </tr>
+             </table>
            </p>
          <% end %>
-   </div>
-   <div class="col-md-6">
-         <h2>Find User</h2>
+         <br>
+         <br>
+         <br>
+         <br>
+
+         <h3>FIND USER</h3>
          <br>
          <%= form_tag(users_path, :method => "get", id: "search-form") do %>
              <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
              <%= submit_tag "Search", :name => nil, class: "btn btn-primary btn-lg"  %>
          <% end %>
-   </div>
   </div>
  </div>

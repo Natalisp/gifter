@@ -14,14 +14,14 @@
         <div class="collapse navbar-collapse navbar-right" id="mynavbar">
             <ul class="nav navbar-nav">
               <% if current_user %>
-                    <li><%= link_to "Home", root_path %></li>
-                    <li><%= link_to "My Profile", user_path(current_user) %></li>
-                    <li><%= link_to "My Wishlists", user_wishlists_path(current_user) if current_user.wishlists.size > 0 %></li>
-                    <li><%= link_to "My friends", friendships_path %></li>
-                    <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
+                    <li><%= link_to "HOME", root_path %></li>
+                    <li><%= link_to "MY PROFILE", user_path(current_user) %></li>
+                    <li><%= link_to "MY WHISHLIST", user_wishlists_path(current_user) if current_user.wishlists.size > 0 %></li>
+                    <li><%= link_to "MY FRIENDS", friendships_path %></li>
+                    <li><%= link_to "SIGN OUT", destroy_user_session_path, method: 'delete' %></li>
                 <% else %>
-                    <li> <%= link_to "Sign in", new_user_session_path %> </li>
-                    <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+                    <li> <%= link_to "SIGN IN", new_user_session_path %> </li>
+                    <li> <%= link_to "SIGN UP", new_user_registration_path %> </li>
                 <%end%>
             </ul>
         </div>

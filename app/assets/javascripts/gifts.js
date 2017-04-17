@@ -3,6 +3,7 @@ var deleteButton = '<button class="btn btn-secondary btn-sm" id="delete-button">
 $(document).on('turbolinks:load', function() {
   loadComments();
   nextGift();
+  getFriends();
 });
 
 function loadComments() {
@@ -79,6 +80,7 @@ function makeAjaxPost(event) {
      }
    }
 
+
   function nextGift() {
     var wishlistId =  parseInt($("#next").attr("wishlist-id"));
     var userId = parseInt($("#next").attr("user-id"));
@@ -114,3 +116,23 @@ function makeAjaxPost(event) {
   Array.prototype.randomElement = function () {
       return this[Math.floor(Math.random() * this.length)]
   }
+
+// class Friend {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+//
+// function getFriends() {
+//   $.ajax({
+//     type: 'GET',
+//     url: window.location.href + '.json',
+//     success: function (resp) {
+//       let f = resp['friends'];
+//       $.each(resp['friends'], function (i, friend) {
+//         let friend_name = new Friend(friend['first_name']);
+//         $('#f').append('<li>' + friend_name.name + '</li>');
+//       });
+//     }
+//   })
+// }

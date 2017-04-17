@@ -2,10 +2,8 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
-      <%= link_to "Go Back", user_wishlists_path(@wishlist.user) %>
     </div>
     <div class="col-sm-6">
-      <h4><%= "Your wishlist" if current_user.id == @wishlist.user.id %> </h4>
        <h3><%= @wishlist.name %> list</h3>
        <% if current_user.id == @user.id || @user.friendships.include?(Friendship.find_by(friend_id: current_user.id, user_id: @user.id)) %>
       <br>
@@ -14,7 +12,7 @@
       <% @gifts.each.with_index(1) do |g, i| %>
       <div class="gift-name">
         <div class="<%= 'gift-receiving-name' if g.status == 'receiving' %>">
-          <h4><%= i %>. <%= link_to g.name.upcase, gift_path(g.id)%> </h4>
+          <h4><%= i %>. <%= link_to g.name.upcase, gift_path(g.id), :style => "color: #eb1478;" %></h4>
         </div>
       </div>
        <h5>Store preference: <%= link_to g.link if g.link %> <%= "None" if g.link == ""  %></h5>
