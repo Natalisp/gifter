@@ -1,7 +1,6 @@
-<div class="container">
+<div class="container  home-page_center">
   <div class="row">
     <div class="col-sm-3">
-      <%= link_to "GO BACK", user_wishlist_path(@gift.wishlist.user, @gift.wishlist) %>
     </div>
     <div class="col-sm-6">
 
@@ -15,14 +14,18 @@
           </p>
           <% end %> -->
 
-        <h2 class="center-text"> <%=  @gift.wishlist.user.first_name %> realy wants </h2>
+        <h2 class="center-text"> <%=  @gift.wishlist.user.first_name.upcase %> WANTS</h2>
+        <br>
+        <br>
         <div class="center-text gift-name-color">
-        <h1 id="gift-name"><strong><%= @gift.name.upcase %> </strong></h1>
+        <h3 id="gift-name"><strong><%= @gift.name.upcase %> </strong></h3>
         </div>
         <div class="center-text">
-        <h5 >Store preference: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
         <br>
-        <h4 class="center-text"><%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %></h4>
+        <br>
+        <h5 >FROM: <%= link_to @gift.link, @gift.link if @gift.link %> <%= "none" if @gift.link == nil %></h5>
+        <br>
+        <h4 class="center-text" style="color:#eb1478;" ><%= "You are getting it for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && @gift.friend_buyers.include?(current_user) %></h4>
         <h4 class="center-text"><%= "Someone is getting it already for #{ @gift.wishlist.user.first_name}" if @gift.status == "receiving" && !@gift.friend_buyers.include?(current_user) %></h4>
         <%= button_to "I will get it!", gift_path(@gift, :gift => {:status => "receiving"}), method: :patch, class: "btn btn-primary" if @gift.status == "wishing" && current_user.id != @user.id %>
       </div>
@@ -51,12 +54,14 @@
       <%= render 'comments/form' %>
     </div>
     <% else %>
-      <h1 class="center-text">You want</h1>
-      <div class="center-text gift-name-color">
-              <h1 id="gift-name"><%= @gift.name %></h1>
-      </div>
+      <h3 class="center-text">YOU WANT</h3>
+      <br>
+      <br>
+     <h3 id="gift-name"><%= @gift.name.upcase %></h3>
+     <br>
+     <br>
       <div class="center-text">
-        <h3>From: <%= link_to @gift.link if @gift.link %> <%= "no preference" if @gift.link == "" %></h3>
+        <h3>FROM: <%= link_to @gift.link if @gift.link %> <%= "no preference" if @gift.link == "" %></h3>
         <br>
         <%= link_to "Edit", edit_gift_path(@gift) %>
         <%= link_to "Delete", gift_path(@gift), :method => 'DELETE' %>
@@ -64,7 +69,7 @@
     <%end%>
     </div>
     <div class="col-sm-3">
-    <button id="next" class="btn btn-link" wishlist-id="<%= @wishlist.id %>" user-id="<%= @user.id %>" gift-id="" >NEXT</button>
+    <button id="next" class="btn btn-link" wishlist-id="<%= @wishlist.id %>" user-id="<%= @user.id %>" gift-id="">NEXT GIFT</button>
     </div>
   </div>
 </div>
