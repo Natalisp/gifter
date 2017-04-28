@@ -7,7 +7,7 @@ $pink: #eb1478;
 }
 
 body {
-  background-color: $biruza;
+  background-color: #fff;
 }
 
 // pink color #eb1478
@@ -20,14 +20,30 @@ a:link, a:visited, a:hover, a:active {
 /* sign in form */
 
 #reg_form {
-  width: 40vw;
-  height: 350px;
-  margin: auto;
+  width: 250px;
+  height: 300px;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 52vh; left: 80vw; bottom: 0; right: 10vw;
   text-align: center;
+  border: 3px solid #fff;
+  color: #fff;
 }
 
+#reg_form input {
+  color: #000;
+}
+
+#because {
+  margin-top: 7vw;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 7vw;
+}
+
+#because span {
+  font-weight: 700;
+  color: #000;
+}
 
 /* primary button */
 .btn-primary {
@@ -62,7 +78,7 @@ a:link, a:visited, a:hover, a:active {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family:  Benton Sans Medium, Helvetica, sans-serif
+  font-family:  Benton Sans Medium, Helvetica, sans-serif
 }
 
 p, div {
@@ -73,18 +89,24 @@ p, div {
   border: none;
 }
 
+.navbar-default {
+  background-color: transparent;
+}
+
 .navbar-brand {
-  font-family: Permanent Marker, serif;
-  font-size: 230%;
+  padding-top: 3vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7vw;
   text-align: center;
+  font-weight: 600;
 }
 
 .navbar-default .navbar-brand {
-  color: #272625;
+  color: #000;
 }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-  color: #eb1478;
+  color: #fff;
 }
 
 /* BUTTONS */
@@ -99,9 +121,8 @@ p, div {
 
 /* FONTS */
 .navbar-default .navbar-nav li a {
-  color: #fff;
+  color: #000;
   opacity: 0.8;
-  letter-spacing: 2px;
   transition: transform .15s ease-out .15s,-webkit-transform .15s ease-out .15s;
 }
 
@@ -174,8 +195,16 @@ td {
   text-align: right;
 }
 
-.container-fluid {
-  background-color: $biruza;
+.container-fluid div {
+  background-color: transparent;
+  border: none;
+}
+
+.homepage {
+  background-image: url(givemore-bg.jpeg);
+  padding: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #delete-button {
@@ -184,4 +213,31 @@ td {
   padding: 3px 5px;
   color: #eb1478;
   background-color: #fff;
+}
+
+.notice {
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+@media (max-width: 800px) {
+  #reg_form {
+    top: 20vh; left: 40vw; bottom: 0; right: 10vw;
+  }
+  #because {
+    opacity: 0;
+  }
+
+}
+
+@media (max-width: 600px) {
+  #reg_form {
+    top: 20vh; left: 0; bottom: 0; right: 0;
+    margin: 0 auto;
+    background-color: #000;
+  }
+  #because {
+    opacity: 0;
+  }
+
 }
